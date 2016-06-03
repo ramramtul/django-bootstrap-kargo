@@ -28,6 +28,45 @@ def customer(request):
 
     return render(request, 'customer/customer.html', data)
 
+def create_order(request):
+    """
+    Handle new customer creation
+    """
+
+    # Initial form and data
+    data = {
+        'form': NCustomerForm(),
+    }
+
+    # if user submit data from this page, we capture the POST data and save it
+    if request.method == 'POST':
+
+        # wrap POST data with the form
+        form = NCustomerForm(request.POST)
+
+        # Transaction savepoint (good to provide rollback data)
+        sid = transaction.savepoint()
+
+        if form.is_valid():
+
+            # wrap form result into dict ODOrder model fields structure 
+            orderku_data = {
+                'name': form.cleaned_data.get('name'),
+                'email': form.cleaned_data.get('email'),
+                'phone': form.cleaned_data.get('phone'),
+                'address': form.cleaned_data.get('address'),
+            }
+
+            try:
+                Detcus.objects.create(**orderku_data)
+            except:
+                transaction.savepoint_rollback(sid)
+                messages.error(request, "Oops! Something wrong happened!")
+
+            messages.info(request, "A new record has been created!")
+
+    return render(request, 'customer/create_customer.html', data)
+
 
 def management(request):
     """

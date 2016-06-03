@@ -12,3 +12,13 @@ class ODOrderForm(forms.ModelForm):
     class Meta:
         model = ODOrder
         fields = ('name', 'phone', 'price')
+
+class NCustomerForm(forms.ModelForm):
+	"""
+	form for create new customer
+	"""
+	name = forms.CharField(label=_('Nama Customer'))
+
+    class Meta:
+        model = Detcus
+        fields = ('name','email', 'phone', 'address')
