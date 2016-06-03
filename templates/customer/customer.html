@@ -15,7 +15,7 @@
 
         <div class="widget">
             <div class="widget-body">
-                <a href="{% url 'order:create_order' %}"><button type="button" class="btn btn-primary"><i class=" fa fa-plus"></i> Create a New</button></a></a>
+                <a href="{% url 'order:create_customer' %}"><button type="button" class="btn btn-primary"><i class=" fa fa-plus"></i> Create a New</button></a></a>
                 <hr/>
                 <table class="table">
                     <thead>
@@ -38,8 +38,8 @@
                         <tr>
                             <th scope="row">{{ forloop.counter }}</th>
                             <td>{{ order.name }}</td>
+                            <td>{{ order.email }}</td>
                             <td>{{ order.phone }}</td>
-                            <td>{{ order.price }}</td>
                             <td>{{ order.address}}</td>
                             <td>
                                 <a class="btn btn-info btn-xs" href="{% url 'order:edit_order' order.uuid %}"><i class=" fa fa-edit"></i> Edit<a/>

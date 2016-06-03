@@ -39,7 +39,7 @@ class Detcus(CommonInfo):
     name = models.CharField(max_length=30)
     email = models.EmailField(max_length=254)
     phone = models.CharField(max_length=30)
-    address = models.TextField
+    address = models.TextField(max_length=300)
     photo = models.ImageField(upload_to='uploads/customer', height_field=300, width_field=400, max_length=100)
     
     def __unicode__(self):

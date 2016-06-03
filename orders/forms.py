@@ -1,6 +1,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from orders.models import ODOrder
+from orders.models import Detcus
 
 
 class ODOrderForm(forms.ModelForm):
@@ -15,10 +16,10 @@ class ODOrderForm(forms.ModelForm):
 
 class NCustomerForm(forms.ModelForm):
 	"""
-	form for create new customer
+	Form for create new customer
 	"""
-	name = forms.CharField(label=_('Nama Customer'))
+	name = forms.CharField(label=_('Nama customer'))
 
-    class Meta:
-        model = Detcus
-        fields = ('name','email', 'phone', 'address')
+	class Meta:
+		model = Detcus
+		fields = ('name', 'email', 'phone', 'address')

@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.db import transaction
 from django.shortcuts import render, redirect
 from orders.forms import ODOrderForm
+from orders.forms import NCustomerForm
 from orders.models import ODOrder
 from orders.models import Detcus
 
@@ -28,7 +29,7 @@ def customer(request):
 
     return render(request, 'customer/customer.html', data)
 
-def create_order(request):
+def create_customer(request):
     """
     Handle new customer creation
     """
