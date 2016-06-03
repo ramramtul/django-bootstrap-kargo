@@ -22,4 +22,4 @@ class NCustomerForm(forms.ModelForm):
 
 	class Meta:
 		model = Detcus
-		fields = ('name', 'email', 'phone', 'address')
+		fields = ('name', 'email', 'phone', 'address', 'photo')

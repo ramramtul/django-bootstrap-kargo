@@ -56,6 +56,7 @@ def create_customer(request):
                 'email': form.cleaned_data.get('email'),
                 'phone': form.cleaned_data.get('phone'),
                 'address': form.cleaned_data.get('address'),
+                'photo' : form.cleaned_data.get('photo'),
             }
 
             try:
@@ -106,6 +107,7 @@ def edit_customer(request, uuid=None):
             messages.info(request, "Record has been updated!")
 
     return render(request, 'customer/edit_customer.html', data)
+
 
 def delete_customer(request, uuid=None):
     """
