@@ -68,6 +68,45 @@ def create_customer(request):
 
     return render(request, 'customer/create_customer.html', data)
 
+def edit_customer(request, uuid=None):
+    """
+    How to remove customer
+    """
+    if not uuid:
+        return redirect(reverse('customer:customer'))
+
+    # validate given UUID match with record in database
+    try:
+        order = Detcus.objects.get(uuid=uuid)
+    except Detcus.DoesNotExist:
+        messages.error(request, "Record not found!")
+        return redirect(reverse('order:customer'))
+
+    data = {
+        'form': NCustomerForm(instance=order),
+    }
+
+    # if user submit data from this page, we capture the POST data and save it
+    if request.method == 'POST':
+
+        # wrap POST data with the form
+        form = NCustomerForm(request.POST, instance=order)
+
+        # Transaction savepoint (good to provide rollback data)
+        sid = transaction.savepoint()
+
+        if form.is_valid():
+
+            try:
+                form.save()
+            except:
+                transaction.savepoint_rollback(sid)
+                messages.error(request, "Oops! Something wrong happened!")
+
+            messages.info(request, "Record has been updated!")
+
+    return render(request, 'customer/edit_customer.html', data)
+
 
 def management(request):
     """
