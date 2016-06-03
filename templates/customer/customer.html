@@ -43,7 +43,7 @@
                             <td>{{ order.address}}</td>
                             <td>
                                 <a class="btn btn-info btn-xs" href="{% url 'order:edit_customer' order.uuid %}"><i class=" fa fa-edit"></i> Edit<a/>
-                                <a class="btn btn-danger btn-xs" href="{% url 'order:delete_order' order.uuid %}"><i class=" fa fa-trash"></i> Delete<a/>
+                                <a class="btn btn-danger btn-xs" href="{% url 'order:delete_customer' order.uuid %}"><i class=" fa fa-trash"></i> Delete<a/>
                             </td>
                         </tr>
                         {% endfor %}

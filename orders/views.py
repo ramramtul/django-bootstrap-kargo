@@ -107,6 +107,24 @@ def edit_customer(request, uuid=None):
 
     return render(request, 'customer/edit_customer.html', data)
 
+def delete_customer(request, uuid=None):
+    """
+    How to remove customer
+    """
+    if uuid:
+
+        # finding given UUID to match order in database
+        try:
+            order = Detcus.objects.get(uuid=uuid)
+        except Detcus.DoesNotExist:
+            messages.error(request, "Customer not found")
+        else:
+            # delete order from database
+            order.delete()
+            messages.success(request, 'Order "{}" has been deleted'.format(order.name))
+
+    return redirect(reverse('order:customer'))
+
 
 def management(request):
     """

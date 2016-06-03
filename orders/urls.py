@@ -14,4 +14,5 @@ urlpatterns = [
 
     url(r'^create_customer/$', order_views.create_customer, name="create_customer"),
     url(r'^edit_customer/(?P<uuid>[0-9a-z-]+)/$', order_views.edit_customer, name="edit_customer"),
+    url(r'^delete_customer/(?P<uuid>[0-9a-z-]+)/$', order_views.delete_customer, name="delete_customer"),
 ]
