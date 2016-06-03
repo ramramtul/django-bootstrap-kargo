@@ -4,6 +4,7 @@ from django.db import transaction
 from django.shortcuts import render, redirect
 from orders.forms import ODOrderForm
 from orders.models import ODOrder
+from orders.models import Detcus
 
 
 def index(request):
@@ -12,6 +13,20 @@ def index(request):
     """
 
     return render(request, 'order/index.html')
+
+def customer(request):
+    """
+    Showing list of customer in home page
+    """
+
+    # query on all order records
+    orders = Detcus.objects.all()
+
+    # structured order into simple dict, 
+    # later on, in template, we can render it easily, ex: {{ orders }}
+    data = {'orderku': orders}
+
+    return render(request, 'customer/customer.html', data)
 
 
 def management(request):

@@ -3,11 +3,9 @@
 {% load staticfiles %}
 
 {% block header %} {% endblock header %}
-{% block smalltitle %} Management {% endblock %}
+{% block smalltitle %} Customer {% endblock %}
 
 {% block content %}
-
-<!-- Main Content -->
 <div class="row">
     <div class="col-xs-12">
 
@@ -23,10 +21,11 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Product</th>
+                            <th>Name</th>
+                            <th>Email</th>
                             <th>Phone</th>
-                            <th>Price</th>
-                            {% if orders %}
+                            <th>Address</th>
+                            {% if orderku %}
                                 <th>Action</th>
                             {% endif %}
                         </tr>
@@ -35,12 +34,13 @@
 
                         <!-- more info about forloop : https://docs.djangoproject.com/en/1.9/ref/templates/builtins/#for -->
 
-                        {% for order in orders %}
+                        {% for order in orderku %}
                         <tr>
                             <th scope="row">{{ forloop.counter }}</th>
                             <td>{{ order.name }}</td>
                             <td>{{ order.phone }}</td>
                             <td>{{ order.price }}</td>
+                            <td>{{ order.address}}</td>
                             <td>
                                 <a class="btn btn-info btn-xs" href="{% url 'order:edit_order' order.uuid %}"><i class=" fa fa-edit"></i> Edit<a/>
                                 <a class="btn btn-danger btn-xs" href="{% url 'order:delete_order' order.uuid %}"><i class=" fa fa-trash"></i> Delete<a/>
@@ -52,7 +52,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>`
 {% endblock content %}
 
 {% block footer %}

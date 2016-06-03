@@ -32,6 +32,19 @@ class CommonInfo(models.Model):
         abstract = True
 
 
+class Detcus(CommonInfo):
+    """
+    Detail untuk customer
+    """
+    name = models.CharField(max_length=30)
+    email = models.EmailField(max_length=254)
+    phone = models.CharField(max_length=30)
+    address = models.TextField
+    photo = models.ImageField(upload_to='uploads/customer', height_field=300, width_field=400, max_length=100)
+    
+    def __unicode__(self):
+        return '{}'.format(self.user.username)
+
 class ODOrder(CommonInfo):
     """
     Order details contain name, phone and amount of total price order 
